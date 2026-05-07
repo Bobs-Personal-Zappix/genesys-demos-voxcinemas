@@ -70,28 +70,23 @@ button{font-family:"DM Sans",sans-serif;cursor:pointer;border:none;outline:none;
 
 /* ═══ SCENE BODY ═══════════════════════════════════════ */
 .scene-body{
-  flex:1;overflow-y:auto;overflow-x:hidden;position:relative;
+  flex:1;overflow-y:auto;overflow-x:hidden;
   display:flex;align-items:flex-start;justify-content:center;
   -webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
 }
 
 /* ═══ SLIDE LAYOUT ═══════════════════════════════════════ */
 .slide{
   width:100%;min-height:100%;
   display:none;flex-direction:column;align-items:center;justify-content:flex-start;
-  padding:24px 32px 80px;
+  padding:28px 32px 88px;
   animation:slideIn .35s ease;
 }
-/* Desktop: vertically center slides that fit in viewport */
-@media(min-width:769px){
-  .slide{
-    min-height:100%;
-    justify-content:center;
-  }
-}
+
 .slide.active{display:flex;}
-@keyframes slideIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideBack{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideBack{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 .slide.back{animation:slideBack .35s ease;}
 
 /* ═══ SECTION LABELS ═══════════════════════════════════════ */
@@ -642,7 +637,7 @@ button{font-family:"DM Sans",sans-serif;cursor:pointer;border:none;outline:none;
 @media(max-width:768px){
   /* Slide layout — top-anchored, scrollable */
   .slide{
-    padding:16px 14px 88px;
+    padding:20px 14px 88px;
     justify-content:flex-start;
     align-items:center;
   }
@@ -1493,6 +1488,10 @@ function goToSlide(n, direction = 'forward') {
   if (direction === 'back') next.classList.add('back');
   else next.classList.remove('back');
   next.classList.add('active');
+
+  // Always scroll back to top of scene-body when changing slides
+  const sb = document.getElementById('sceneBody');
+  if (sb) sb.scrollTop = 0;
 
   currentSlide = n;
   updateUI();
