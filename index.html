@@ -25,7 +25,9 @@ button{font-family:"DM Sans",sans-serif;cursor:pointer;border:none;outline:none;
 
 /* ═══ SCENE SYSTEM ═══════════════════════════════════════ */
 .scene{
-  position:fixed;inset:0;display:flex;flex-direction:column;
+  position:fixed;left:0;right:0;bottom:0;
+  top:57px;
+  display:flex;flex-direction:column;
   opacity:0;pointer-events:none;transition:opacity .35s ease;
   overflow:hidden;
 }
@@ -33,11 +35,12 @@ button{font-family:"DM Sans",sans-serif;cursor:pointer;border:none;outline:none;
 
 /* ═══ TOP HEADER BAR ═══════════════════════════════════════ */
 .top-bar{
-  height:54px;flex-shrink:0;
-  background:rgba(8,10,18,.92);backdrop-filter:blur(20px);
+  position:fixed;top:0;left:0;right:0;
+  height:54px;
+  background:rgba(8,10,18,.96);backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border2);
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;z-index:50;
+  padding:0 20px;z-index:200;
   box-shadow:0 2px 20px rgba(0,0,0,.4);
 }
 .tb-left{display:flex;align-items:center;gap:12px;}
@@ -59,7 +62,8 @@ button{font-family:"DM Sans",sans-serif;cursor:pointer;border:none;outline:none;
 
 /* ═══ PROGRESS BAR ═══════════════════════════════════════ */
 .progress-strip{
-  height:3px;background:var(--faint);flex-shrink:0;position:relative;overflow:hidden;
+  position:fixed;top:54px;left:0;right:0;
+  height:3px;background:var(--faint);z-index:200;overflow:hidden;
 }
 .progress-fill{
   height:100%;
@@ -74,6 +78,7 @@ button{font-family:"DM Sans",sans-serif;cursor:pointer;border:none;outline:none;
   display:flex;align-items:flex-start;justify-content:center;
   -webkit-overflow-scrolling:touch;
   scroll-behavior:smooth;
+  overscroll-behavior:contain;
 }
 
 /* ═══ SLIDE LAYOUT ═══════════════════════════════════════ */
